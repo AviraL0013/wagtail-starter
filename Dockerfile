@@ -27,4 +27,4 @@ COPY --chown=wagtail . .
 
 RUN SECRET_KEY=none python manage.py collectstatic --noinput --clear
 
-CMD set -xe; python manage.py createcachetable; python manage.py migrate --noinput; python manage.py loaddata fixtures/demo.json; gunicorn myproject.wsgi:application
+CMD ["bash", "/app/startup.sh"]
