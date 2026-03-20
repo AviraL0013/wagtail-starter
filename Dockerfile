@@ -57,4 +57,4 @@ RUN SECRET_KEY=none python manage.py collectstatic --noinput --clear
 #   PRACTICE. The database should be migrated manually or using the release
 #   phase facilities of your hosting platform. This is used only so the
 #   Wagtail instance can be started with a simple "docker run" command.
-CMD set -xe; python manage.py createcachetable; python manage.py migrate --noinput; python manage.py loaddata fixtures/demo.json; python manage.py shell -c "from wagtail.images.models import Rendition; Rendition.objects.all().delete()"; gunicorn myproject.wsgi:application
+CMD set -xe; python manage.py createcachetable; python manage.py migrate --noinput; python manage.py loaddata fixtures/demo.json --exclude wagtailimages.rendition; gunicorn myproject.wsgi:application
